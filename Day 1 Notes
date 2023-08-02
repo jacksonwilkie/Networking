@@ -49,3 +49,12 @@ Filter Logic - Least exclusive
       tcp[13] & 0x11 !=0
       tcpdump "tcp[13] & 0x11 !=0" -r tcpflags.pcap
       tcpdump "tcp[13] & 0x11 !=0" -r tcpflags.pcap | wc -l
+
+
+
+IEEE 802.1AD "Q-in-Q"
+Ether Type   Type of traffic
+0x88A8        Standard Double Tag
+0x9100        Non Standard double tag
+
+
