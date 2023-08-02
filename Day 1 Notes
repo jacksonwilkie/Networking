@@ -1,9 +1,9 @@
 Ethernet Header
 
-DC A1 B2 CE E4 F2        A4 62 FC E2 EF A9      08 00       |   Payload / Data / SDU    |    CRS/FCS
-Destination Mac Addr     Source Mac Addr        Ethertype   |  (ARP, IP, TCP, etc.)     |    00 12 20 
-                                                            |                           |      B3
-                                                            |                           |
+DC A1 B2 CE E4 F2        A4 62 FC E2 EF A9      08 00       |   Payload / Data / SDU    |   00 12 20
+Destination Mac Addr     Source Mac Addr        Ethertype   |  (ARP, IP, TCP, etc.)     |      B3
+                                                            |                           |    CRS/FCS
+                                                            |                           | 
 14 byte MAC Header/trailer                                  |   Data (46-1500 bytes)    |    4 Bytes
 
 
@@ -12,3 +12,14 @@ Ether Type    Type of traffic
 0x0806        ARP
 0x86DD        IPv6
 08100         VLAN Tagging 802.1q
+
+
+802.1Q Header
+
+DC A1 B2 CE E4 F2        A4 62 FC E2 EF A9   81 00 00 64         08 00       |   Payload / Data / SDU    |    00 12 20
+Destination Mac Addr     Source Mac Addr     VLAN Tag            Ethertype   |  (ARP, IP, TCP, etc.)     |       B3
+                                                                             |                           |     CRS/FCS
+                                                                             |                           |
+18 byte MAC Header/trailer                                                   |   Data (46-1500 bytes)    |    4 Bytes
+
+ARP Header
