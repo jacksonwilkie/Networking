@@ -23,3 +23,8 @@ Destination Mac Addr     Source Mac Addr     VLAN Tag            Ethertype   |  
 18 byte MAC Header/trailer                                                   |   Data (46-1500 bytes)    |    4 Bytes
 
 ARP Header
+https://net.cybbh.io/public/networking/latest/lesson-1-fundamentals/fg.html#_4_4_arp_header
+
+IPv4 Headers
+https://net.cybbh.io/public/networking/latest/lesson-1-fundamentals/fg.html#_5_1_ipv4_header
+
