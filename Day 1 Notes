@@ -14,17 +14,38 @@ Ether Type    Type of traffic
 08100         VLAN Tagging 802.1q
 
 
-802.1Q Header
+802.1Q Header-
 
 DC A1 B2 CE E4 F2        A4 62 FC E2 EF A9   81 00 00 64         08 00       |   Payload / Data / SDU    |    00 12 20
 Destination Mac Addr     Source Mac Addr     VLAN Tag            Ethertype   |  (ARP, IP, TCP, etc.)     |       B3
                                                                              |                           |     CRS/FCS
                                                                              |                           |
 18 byte MAC Header/trailer                                                   |   Data (46-1500 bytes)    |    4 Bytes
-
+p
 ARP Header
 https://net.cybbh.io/public/networking/latest/lesson-1-fundamentals/fg.html#_4_4_arp_header
 
 IPv4 Headers
 https://net.cybbh.io/public/networking/latest/lesson-1-fundamentals/fg.html#_5_1_ipv4_header
 
+Finding where FTP lands 
+ex. 1,2,3,4,5,6,100,20
+multiply 100 x 256, add 20.
+look for port 25620
+
+Bitwise Masking
+Filters down to the bits and not just the byte
+
+ip[0] & 0x0F = 0x05
+      & 0x00 means including/selecting the field 
+      = 0x05 means it wants exactly 0x05 
+Filter Logic - Most exclusive
+      tcp[13] = 0x11
+      --or--
+      tcp[13] & 0xFF = 0x11
+      tcpdump "tcp[13] = 0x11" -r tcpflags.pcap
+      tcpdump "tcp[13] = 0x11" -r tcpflags.pcap | wc -1
+Filter Logic - Least exclusive
+      tcp[13] & 0x11 !=0
+      tcpdump "tcp[13] & 0x11 !=0" -r tcpflags.pcap
+      tcpdump "tcp[13] & 0x11 !=0" -r tcpflags.pcap | wc -l
