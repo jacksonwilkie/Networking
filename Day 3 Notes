@@ -1,0 +1,65 @@
+Reconnaissance
+Active, passive, internal, external
+
+Passive External:
+Job listings, web recon, whois listings, DNS Queries, Google searches, Shodan, Zone Transfers
+
+Active External: 
+Nmap scans, ping scans
+
+Passive Internal:
+Open ports, running services, other users logged in the box, ARP Cache, Interface IPs, Known routes, Packet Sniffers
+/etc/hosts, /etc/resolv.conf
+
+Active Internal:
+Ping Sweep/ARP Requests
+
+Passive reconnaissance
+    Gathering information about targets without direct interaction
+    Not as straight forward and requires more time than active reconnaissance
+    Lower risk of discovery
+
+Passive External Network Reconnaissance
+    Information gathered outside of the network using passive methods
+    Allows for more efficient attacks and plans
+
+
+dig google.com A - IPv4
+dig google.com AAAA - IPv6
+dig google.com BTR - Reverse DNS
+dig google.com MX - Mail server
+dig google.com SOA - Start of authority (SOA)
+dig axfr @nsztm1.digi.ninja zonetransfer.me --- @nsztm1.digi.ninja will be doing the zone transfer about zonetransfer.me
+
+
+GOOGLE SEARCHES
+ *ccboe.net -site ccboe.net - looks for all information pertaining to ccboe.net
+  site:*.ccboe.net "Powered by"
+
+
+Network Scanning
+
+    Scanning Strategy
+        Remote to Local
+        Local to Remote
+        Local to Local
+        Remote to Remote
+
+    Scanning Approach
+
+        Aim
+            Wide range target scan
+            Target specific scan
+        Method
+            Single source scan
+            Distributed scan
+
+nmap -A -T4 --min-rate 10000 -Pn <target host/network> -vvvv
+cat /etc/hosts
+cat /etc/resolv.conf
+ss -ntulp : open ports
+ps -elf Running serveses and procs
+who/w other users logged in 
+ip neigh for arp cache
+ip route for known routes
+
