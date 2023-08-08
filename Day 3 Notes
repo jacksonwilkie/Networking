@@ -76,3 +76,4 @@ nc <ip> <port>
 wget -r [ip]
 wget -r gtp://localhost
 curl localhost - sends a url request
+telnet host port
