@@ -62,4 +62,4 @@ ps -elf Running serveses and procs
 who/w other users logged in 
 ip neigh for arp cache
 ip route for known routes
-
+ip r 
