@@ -36,16 +36,20 @@ ip address
 ip neigh
 ip a 
 
-USER -> TOBIAS -> COLBY -> STEVE -> BART
+----------------------------------------------------
+LOCAL PORT FORWARDING
+----------------------------------------------------
+
+USER -> TOBIAS -> COLBY -> STEVE 
 
 CONNECTING TO TOBIAS
 
-ssh -L 41800:TOBIAS IP: 
+ssh -L 41800:TOBIAS IP:80 
 wget -r 41800:127.0.0.1
 
 CONNECTING TO COLBY 
 
-USER -> TOBIAS -> COLBY -> STEVE -> BART
+USER -> TOBIAS -> COLBY -> STEVE 
 
 ssh tobias@tobiasip -L 41800:colbyip:22 -NT  ---builds bridge from tobias to colby  (Colby has port 22 open on his local machine)
 
@@ -54,7 +58,7 @@ ssh -p 41800 colby@127.0.0.1 --- uses port 41800 to connect to the loopback, whi
 
 CONNECTING TO STEVE
 
-USER -> TOBIAS -> COLBY -> STEVE -> BART
+USER -> TOBIAS -> COLBY -> STEVE 
 
 ssh tobias@<tobiasip> -L 41800:colbyip:22 -NT
 
@@ -64,5 +68,12 @@ telnet 127.0.0.1 41801
 
 USER -> TOBIAS -> COLBY -> STEVE -> BART
 
-CONNECTING TO BART
+----------------------------------------------------
+REMOTE PORT FORWARDING
+----------------------------------------------------
 
+USER -> TOBIAS -> COLBY -> STEVE -> DJ
+
+CONNECTING TO DJ (HAS PORT 25 OPEN)
+
+ssh colby@colbyip -R 41899:127.0.0.1(STEVE LOOPBACK):22 -NT
