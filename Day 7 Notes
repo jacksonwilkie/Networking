@@ -30,7 +30,7 @@ CONNECTING TO COLBY
 
 USER -> TOBIAS -> COLBY -> STEVE
 
-ssh tobias@tobiasip -L 42100:colbyip:22 -NT  ---builds bridge from tobias to colby
+ssh tobias@tobiasip -L 42100:colbyip:22 -NT  ---builds bridge from tobias to colby  (Colby has port 22 open on his local machine)
 
 ssh -p 42100 colby@127.0.0.1 --- uses port 42100 to connect to the loopback, which gets to colby 
 
@@ -40,3 +40,8 @@ CONNECTING TO STEVE
 USER -> TOBIAS -> COLBY -> STEVE
 
 ssh tobias@<tobiasip> -L 42100:colbyip:22 -NT
+
+ssh -p 42100 colby@127.0.0.1 -L 42101:steve:25 -NT   (Steve has port 25 open on his local machine)
+
+telnet 127.0.0.1 42101
+
