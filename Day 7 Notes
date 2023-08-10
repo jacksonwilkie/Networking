@@ -26,22 +26,43 @@ ssh student@172.16.1.15 -L 1111:172.16.40.10:22 -NT
 ssh student@localhost -p 1111 -L 2222:172.16.82.106:80 -NT
 firefox localhost:2222
 
+Situational awareness
+
+ss -ntulp
+w 
+whoami
+ifconfig
+ip address 
+ip neigh
+ip a 
+
+USER -> TOBIAS -> COLBY -> STEVE -> BART
+
+CONNECTING TO TOBIAS
+
+ssh -L 41800:TOBIAS IP: 
+wget -r 41800:127.0.0.1
+
 CONNECTING TO COLBY 
 
-USER -> TOBIAS -> COLBY -> STEVE
+USER -> TOBIAS -> COLBY -> STEVE -> BART
 
-ssh tobias@tobiasip -L 42100:colbyip:22 -NT  ---builds bridge from tobias to colby  (Colby has port 22 open on his local machine)
+ssh tobias@tobiasip -L 41800:colbyip:22 -NT  ---builds bridge from tobias to colby  (Colby has port 22 open on his local machine)
 
-ssh -p 42100 colby@127.0.0.1 --- uses port 42100 to connect to the loopback, which gets to colby 
+ssh -p 41800 colby@127.0.0.1 --- uses port 41800 to connect to the loopback, which gets to colby 
 
 
 CONNECTING TO STEVE
 
-USER -> TOBIAS -> COLBY -> STEVE
+USER -> TOBIAS -> COLBY -> STEVE -> BART
 
-ssh tobias@<tobiasip> -L 42100:colbyip:22 -NT
+ssh tobias@<tobiasip> -L 41800:colbyip:22 -NT
 
-ssh -p 42100 colby@127.0.0.1 -L 42101:steve:25 -NT   (Steve has port 25 open on his local machine)
+ssh -p 41800 colby@127.0.0.1 -L 41801:steve:25 -NT   (Steve has port 25 open on his local machine)
 
-telnet 127.0.0.1 42101
+telnet 127.0.0.1 41801
+
+USER -> TOBIAS -> COLBY -> STEVE -> BART
+
+CONNECTING TO BART
 
