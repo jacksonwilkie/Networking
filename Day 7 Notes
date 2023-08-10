@@ -40,14 +40,20 @@ ip a
 LOCAL PORT FORWARDING
 ----------------------------------------------------
 
+WHILE ON USER (LOCAL HOST)
+
 USER -> TOBIAS -> COLBY -> STEVE 
 
 CONNECTING TO TOBIAS
+WHILE ON USER (LOCAL HOST)
+
 
 ssh -L 41800:TOBIAS IP:80 
 wget -r 41800:127.0.0.1
 
 CONNECTING TO COLBY 
+
+WHILE ON USER (LOCAL HOST)
 
 USER -> TOBIAS -> COLBY -> STEVE 
 
@@ -57,6 +63,8 @@ ssh -p 41800 colby@127.0.0.1 --- uses port 41800 to connect to the loopback, whi
 
 
 CONNECTING TO STEVE
+
+WHILE ON USER (LOCAL HOST)
 
 USER -> TOBIAS -> COLBY -> STEVE 
 
@@ -71,6 +79,8 @@ USER -> TOBIAS -> COLBY -> STEVE -> BART
 ----------------------------------------------------
 REMOTE PORT FORWARDING
 ----------------------------------------------------
+
+WHILE SSH ON STEVE WORKSTATION
 
 USER -> TOBIAS -> COLBY -> STEVE -> DJ
 
