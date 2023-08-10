@@ -58,7 +58,6 @@ WHILE ON USER (LOCAL HOST)
 USER -> TOBIAS -> COLBY -> STEVE 
 
 ssh tobias@tobiasip -L 41800:colbyip:22 -NT  ---builds bridge from tobias to colby  (Colby has port 22 open on his local machine)
-
 ssh -p 41800 colby@127.0.0.1 --- uses port 41800 to connect to the loopback, which gets to colby 
 
 
@@ -69,9 +68,7 @@ WHILE ON USER (LOCAL HOST)
 USER -> TOBIAS -> COLBY -> STEVE 
 
 ssh tobias@<tobiasip> -L 41800:colbyip:22 -NT
-
-ssh -p 41800 colby@127.0.0.1 -L 41801:steve:25 -NT   (Steve has port 25 open on his local machine)
-
+ssh -p 41800 colby@127.0.0.1 -L 41801:steveip:25 -NT   (Steve has port 25 open on his local machine)
 telnet 127.0.0.1 41801
 
 USER -> TOBIAS -> COLBY -> STEVE -> BART
@@ -87,3 +84,22 @@ USER -> TOBIAS -> COLBY -> STEVE -> DJ
 CONNECTING TO DJ (HAS PORT 25 OPEN)
 
 ssh colby@colbyip -R 41899:127.0.0.1(STEVE LOOPBACK):22 -NT
+
+WHILE ON USER (LOCAL HOST)
+
+ssh -p 41800  colby@127.0.0.1 -L 42102:127.0.0.1:41899 -NT
+ssh -p 41802 steve@127.0.0.1 
+
+
+WHILE SSH ON STEVE WORKSTATION
+
+ssh steve@127.0.0.1 -R 42198:dj ip: 25 -NT
+telnet 127.0.0.1 42198
+ehlo
+
+WHILE ON USER (LOCAL HOST)
+
+ssh -p 41802 steve@127.0.0.1 -L 42103:127.0.0.1:41898 -NT
+telnet 127.0.0.1 42103
+ehlo
+
