@@ -1,0 +1,42 @@
+
+SSH Port Forwarding
+Creates channels using SSH-CONN protocol
+Allows for tunneling of other services through SSH
+Provides insecure services encryption
+
+
+
+ssh -p <alt port> <user>@<pivot ip> -L <local bind port>:<tgt ip>:<tgt port> -NT
+or 
+ssh -L <local bind port>:<tgt ip>:<tgt port> -p <alt port> <user>@<pivot ip> -NT
+
+
+local port forwarding opens a port on your local machine
+remote port forwarding 
+
+SSH Local Port Forwarding
+Creates a local port (1111) on the local host that forwards to a target machine’s port 80.
+
+ssh student@172.16.82.106 -L 1111:localhost:80 -NT
+or
+ssh -L 1111:localhost:80 student@172.16.82.106 -NT
+
+Internet Host:
+ssh student@172.16.1.15 -L 1111:172.16.40.10:22 -NT
+ssh student@localhost -p 1111 -L 2222:172.16.82.106:80 -NT
+firefox localhost:2222
+
+CONNECTING TO COLBY 
+
+USER -> TOBIAS -> COLBY -> STEVE
+
+ssh tobias@tobiasip -L 42100:colbyip:22 -NT  ---builds bridge from tobias to colby
+
+ssh -p 42100 colby@127.0.0.1 --- uses port 42100 to connect to the loopback, which gets to colby 
+
+
+CONNECTING TO STEVE
+
+USER -> TOBIAS -> COLBY -> STEVE
+
+ssh tobias@<tobiasip> -L 42100:colbyip:22 -NT
