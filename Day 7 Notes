@@ -164,3 +164,6 @@ USER (LOCAL HOST)
 ssh -p 41802 steve@127.0.0.1 -L 42105:127.0.0.41896 -NT
 ssh -p 41805 bart@127.0.0.1 -D 9050 -NT
 proxychains nmap -Pn JOSH!!!!
+
+Banner Grabbing
+proxychains nc 127.0.0.1 {port}
