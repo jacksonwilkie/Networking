@@ -1,0 +1,13 @@
+P0F
+
+Looks at variations in initial TTL, fragmentation flag, default IP header packet length, window size, and TCP options.
+
+Config file: 
+/etc/p0f/p0f.fp
+
+This views internet traffic through a certain Interface
+sudo p0f -i eth0
+
+p0f -r
+
+sudo tcpdump -r pcap "tcp[13] = 0x02" | awk '{print$3}' | cut -d. -f3  | uniq -c | wc -l
