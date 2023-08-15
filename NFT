@@ -1,0 +1,44 @@
+ sudo iptables -I OUTPUT -p icmp -d 172.16.82.112 -s 10.50.45.34 -j ACCEPT
+  sudo iptables -I OUTPUT -p icmp -s 172.16.82.112 -d 10.50.45.34 -j ACCEPT 
+
+sudo iptables -I INPUT -t tcp  --port=443 -m state --state=NEW,ESTABLISHED -j ACCEPT
+sudo iptables -I OUTPUT -p udp -m multiport --ports=5050,5150 -j ACCEPT
+sudo iptables -I INPUT -p udp -m multiport --ports=5050,5150 -j ACCEPT
+sudo iptables -I INPUT -t ucp  --port=443 -m state --state=NEW,ESTABLISHED -j ACCEPT
+sudo iptables -I INPUT -m multiport --ports=3389,22,23 -m state --state=NEW,ESTABLISHED -j ACCEPT
+
+student@blue-host-3-student-18:~$ sudo iptables -I OUTPUT -p tcp -m multiport --ports=3389,22,23 -m state --state=NEW,ESTABLISHED -j ACCEPT
+student@blue-host-3-student-18:~$ sudo iptables -L
+
+
+T2
+nft add table ip CCTC
+
+sudo nft add chain ip CCTC INPUT {type filter hook input priority 0\; policy accept\;}
+sudo nft add chain ip CCTC OUTPUT {type filter hook output priority 0\; policy accept\;}
+
+
+sudo nft add rule ip CCTC INPUT ct state new tcp dport { 22,30,80,3389 } accept
+sudo nft add rule ip CCTC INPUT ct state established  tcp dport { 22,30,80,3389 } accept
+sudo nft add rule ip CCTC OUTPUT ct state new tcp dport { 22,30,80,3389 } accept
+sudo nft add rule ip CCTC OUTPUT ct state established tcp dport { 22,30,80,3389 } accept
+
+sudo nft add rule ip CCTC INPUT icmp type 0 ip daddr 10.10.0.40 accept
+sudo nft add rule ip CCTC INPUT icmp type 8  ip daddr 10.10.0.40 accept
+sudo nft add rule ip CCTC OUTPUT icmp type 0  ip saddr 10.10.0.40 accept
+sudo nft add rule ip CCTC OUTPUT icmp type 8  ip saddr 10.10.0.40 accept
+
+sudo nft add rule ip CCTC OUTPUT tcp sport 5050 accept 
+sudo nft add rule ip CCTC OUTPUT tcp dport 5050 accept
+sudo nft add rule ip CCTC OUTPUT tcp sport 5150 accept
+sudo nft add rule ip CCTC OUTPUT tcp dport 5150 accept
+
+sudo nft add rule ip CCTC INPUT udp sport 5050 accept 
+sudo nft add rule ip CCTC INPUT udp dport 5050 accept
+sudo nft add rule ip CCTC INPUT udp sport 5150 accept
+sudo nft add rule ip CCTC INPUT udp dport 5150 accept
+
+sudo nft add chain ip CCTC INPUT {type filter hook input priority 0\; policy drop\;}
+sudo nft add chain ip CCTC OUTPUT {type filter hook output priority 0\; policy drop\;}
+
+
