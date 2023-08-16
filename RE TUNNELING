@@ -1,7 +1,7 @@
 telnet to float ip
 on ssh01 ssh student@10.50.45.34 -R 41818:localhost:22 -NT
 on IH    ssh net4_student18@localhost -p 41818 -L 41892:192.168.0.10:22 -NT
-on IH    ssh -p 41810 net4_student18@localhost -D 9050 -NT
+on IH    ssh -p 41818 net4_student18@localhost -D 9050 -NT
 on IH    proxychains nmap 192.168.0.20 ,30 , 40 (different commands)
 
 on  ssh01  net4_student18@localhost -L 41899:192.168.0.40:5555 -NT
@@ -10,5 +10,5 @@ SSH01 ssh -p 41899 net4_student18@localhost (yeah run twice, once on ih then onc
 
 now we on the .40
 let's get to 172.16.0.60
-we gonna do proxychains like a motherfucker
+we gonna do proxychains like a motherfucker its not working
 ssh -p 41810 net4_student18@localhost -D 9050 -NT
