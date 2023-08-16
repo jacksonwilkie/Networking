@@ -1,0 +1,17 @@
+snort -V
+cd /etc/snort
+sudo snort -D -l /var/log/snort -c /etc/snort/snort.conf
+ps -ef | grep snort
+cd /rules
+ls
+cat icmp.rules
+ping 10.2.0.2 -c 3
+ls -l /var/log/snort/
+cat /var/log/snort/snort.log.############
+^
+came out weird so do
+v
+sudo tcpdump -vvXntr /var/log/snort/snort.log.############
+
+
+sudo tcpdump -vvXntr /var/log/snort/snort.log.############ | awk '{print $2} {print $4}' | sort | sed 's/s:$//' | uniq -c
