@@ -1,19 +1,10 @@
 telnet to float ip
-ON SSH01 (WE TELNETED IN TO FLOAT)
-  ssh student@10.50.45.34 -R 41801:localhost:22 -NT (RPF TO IH)
-(accepting the RPF)
-  ssh net4_student18@localhost -p 41801 -L 41899:192.168.0.10:22 -NT (SUCCESSFULLY FINISHED THE RPF.)
-  ssh net4_student18@127.0.0.1 -p 41899 (TESTED RPF)
-setting up proxychains on the ssh01
-  ssh net4_student18@localhost -p 41801 -D 4090 -NT
-ssh -p 41810 net4_student18@localhost -D 9050 -NT
-now to .20 
-
-telnet to float ip
-on ssh01 ssh student@10.50.45.34 -R 41810:localhost:22 -NT
-on IH    ssh net4_student18@localhost -p 41810 -L 41899:192.168.0.10:22 -NT
+on ssh01 ssh student@10.50.45.34 -R 41818:localhost:22 -NT
+on IH    ssh net4_student18@localhost -p 41818 -L 41899:192.168.0.10:22 -NT
 on IH    ssh -p 41810 net4_student18@localhost -D 9050 -NT
 on IH    proxychains nmap 192.168.0.20 ,30 , 40 (different commands)
 
-on  ssh01  net4_student18@localhost -L 41840:192.168.0.40:5555 -NT
-IH ssh -p 41899 net4_student18@localhost 
+on  ssh01  net4_student18@localhost -L 41899:192.168.0.40:5555 -NT
+IH ssh -p 41899 net4_student18@localhost
+SSH01 ssh -p 41899 net4_student18@localhost (yeah run twice, once on ih then once on 01)
+
