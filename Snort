@@ -15,3 +15,30 @@ sudo tcpdump -vvXntr /var/log/snort/snort.log.############
 
 
 sudo tcpdump -vvXntr /var/log/snort/snort.log.############ | awk '{print $2} {print $4}' | sort | sed 's/s:$//' | uniq -c
+
+sudo snort -r /var/log/snort/snort.log.############
+
+
+
+
+CREATING A SNORT RULE 
+cd /etc/snort
+ls -l
+
+cd /rules
+
+for icmp rules:
+vim icmp.rules
+alert icmp any any -> any any (msg: "It all began with"; sid:9000020; content:"IDSRuleCheck"; rev:1;)
+sudo snort -D 
+
+Run Snort as a daemon, pointing to the config file. Send logs to the /var/log/snort/ directory. -n limited the number of packets captured and then exits snort.
+snort -D -l /var/log/snort/ -c /etc/snort/snort.conf -n 6
+
+Send a ping from net1 to net3 with "IDSCheck" (converted to hex (494453436865636b)) only in the payload and check the alert log in snort. The pings sent with the payload information should not alert since it didn’t match exactly.
+ping 10.2.0.2 -p 494453494453436865636b -c 8
+
+parse: 
+sudo snort -r /var/log/snort/snort.log.############ -c /etc/snort/rules/icmp.rules
+
+sudo snort -r /file/path/to/pcap -c /etc/snort
