@@ -1,0 +1,16 @@
+Ping Sweep for i in {1..254} ;do (ping -c 1 172.16.20.$i | grep "bytes from" &) ;done
+tcpdump -nrvv search for rip in this network
+
+proxychains nc 10.1.1.25 791
+GET /
+
+proxychains nc 10.1.1.25 
+ stream sender tool = stream.py
+
+packet sniffing tool = tcpdump -nrvv 
+tcpdump -i eth0 'bpf' -Xvv
+tcpdump -nr filename.pcap 'bpf'
+tcpdump -i eth0 -X port 69
+
+changing TTL
+iptables 0t mangle 0A OUTPUT -j TTL --ttl-set 254
