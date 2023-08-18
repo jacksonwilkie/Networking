@@ -14,3 +14,24 @@ tcpdump -i eth0 -X port 69
 
 changing TTL
 iptables 0t mangle 0A OUTPUT -j TTL --ttl-set 254
+
+FIRST LOCAL PORT FORWARD (USE FLOAT IF U HAVE IT) (DO THIS ON YOUR INTERNET HOST / START POINT)
+ssh currentuser@localhost -L (MADE UP PORT (MUP)):(WHERE I GO:VULN PORT ON WHERE I GO) -NT
+
+SECOND LOCAL PORT FORWARD TO PLACE I WANT TO GO (DO THIS ON YOUR INTERNET HOST / START POINT)
+ssh currentuser@localhost -p (PREVIOUS MUP) -L (MUP2):(WHERE I GO):( VULN PORT WHERE I WANNA GO (CAN BE TELNET)) -NT
+
+TELNETING 
+Yeah you can do proxychains telnet <ip>
+but then you wanna put tools on that box and get stuck! 
+so on internet host, do telnet <PREVIOUS MUP(MUP2 IN THIS INSTANCE)>
+
+REMOTE PORT FORWARD ONCE I HIT TELNET BULLSHIT (DO THIS ON YOURBOX YOU JUST TELNETED ON FROM ITS CONNECTING BOX)
+ssh -p (PREVIOUS IP VULN PORT) PREVIOUSUSER@THEIR_IP(NOT THE FLOAT IP, do ip a TO SEE eth0)  -R NEW PORT:localhost:(BOX YOU JUST TELNETED INTO VULERABLE PORT, COULD BE TELNET OR RHP) -NT
+
+PUT TOOLS ON WITH DYNAMIC PORT
+ssh -p (JUST MADE MUP) whereImGoingUsername@localhost -D 9050 -NT
+
+Difference of Local port forwarding and Remote port forwarding is where the port opens on:
+Remote port forwarding opens the port on remote box that you authenticate to.
+Local port forwarding opens the port on the box you are running the command on.
